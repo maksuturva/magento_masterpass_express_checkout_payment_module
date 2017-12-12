@@ -1,0 +1,20 @@
+{
+    "name": "vaimo/maksuturva-masterpass",
+    "type": "magento-module", 
+    "description": "Maksuturva express checkout", 
+    "license": "proprietary", 
+    "authors": [
+        {
+            "name": "Roope Rajala", 
+            "email": "roope.rajala@vaimo.com"
+        }
+    ], 
+    "require": {
+        "vaimo/magento": "*", 
+        "magento-hackathon/magento-composer-installer": "*",
+        "vaimo/maksuturva": "*"
+    }, 
+    "extra": {
+        "vaimo-module-category": "Payment"
+    }
+}

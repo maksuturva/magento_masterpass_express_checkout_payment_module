@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright (c) 2017 Vaimo Finland Oy, Suomen Maksuturva Oy
+ * See LICENSE.txt for license details.
+ */
+ -->
+
+<config>
+    <modules>
+        <Vaimo_MaksuturvaMasterpass>
+            <version>0.1.0</version>
+        </Vaimo_MaksuturvaMasterpass>
+    </modules>
+    <global>
+        <blocks>
+            <maksuturvamasterpass>
+                <class>Vaimo_MaksuturvaMasterpass_Block</class>
+            </maksuturvamasterpass>
+        </blocks>
+        <models>
+            <maksuturvamasterpass>
+                <class>Vaimo_MaksuturvaMasterpass_Model</class>
+            </maksuturvamasterpass>
+        </models>
+        <helpers>
+            <maksuturvamasterpass>
+                <class>Vaimo_MaksuturvaMasterpass_Helper</class>
+            </maksuturvamasterpass>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <maksuturvamasterpass>
+                <use>standard</use>
+                <args>
+                    <module>Vaimo_MaksuturvaMasterpass</module>
+                    <frontName>masterpass</frontName>
+                </args>
+            </maksuturvamasterpass>
+        </routers>
+        <events>
+            <controller_action_predispatch_checkout>
+                <observers>
+                    <maksuturvamasterpass>
+                        <class>maksuturvamasterpass/checkout_observer</class>
+                        <method>checkPaymentMethod</method>
+                    </maksuturvamasterpass>
+                </observers>
+            </controller_action_predispatch_checkout>
+        </events>
+        <layout>
+            <updates>
+                <maksuturvamasterpass>
+                    <file>vaimo_maksuturvamasterpass.xml</file>
+                </maksuturvamasterpass>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Vaimo_MaksuturvaMasterpass>
+                    <files>
+                        <default>Vaimo_MaksuturvaMasterpass.csv</default>
+                    </files>
+                </Vaimo_MaksuturvaMasterpass>
+            </modules>
+        </translate>
+    </frontend>
+    <default>
+        <payment>
+            <masterpassbp>
+                <active>0</active>
+                <model>maksuturvamasterpass/masterpass</model>
+                <order_status>pending</order_status>
+                <title>Masterpass</title>
+                <paymentdue>0</paymentdue>
+                <apiuser></apiuser>
+                <apipassword></apipassword>
+                <test_commurl>http://test1.maksuturva.fi/</test_commurl>
+                <commurl>https://payments.maksuturva.fi/</commurl>
+                <callback_url_workaround>0</callback_url_workaround>
+            </masterpassbp>
+        </payment>
+    </default>
+</config>

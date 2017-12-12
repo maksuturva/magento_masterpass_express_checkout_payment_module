@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright (c) 2017 Vaimo Finland Oy, Suomen Maksuturva Oy
+ * See LICENSE.txt for license details.
+ */
+?>
+<form id="mpbp-checkout-shipping-method-form" action="">
+    <div id="mpbp-checkout-shipping-method">
+        <?php echo $this->getChildHtml('available'); ?>
+    </div>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        var shippingMethod = new ShippingMethod('mpbp-checkout-shipping-method-form', "<?php echo $this->getUrl('masterpass/checkout/saveShippingMethod') ?>");
+        //]]>
+    </script>
+    <div id="mpbp-checkout-shipping-method-additional-load">
+        <?php echo $this->getChildHtml('additional') ?>
+    </div>
+    <div class="buttons-set" id="shipping-method-buttons-container">
+        <button type="button" class="button" onclick="shippingMethod.save()"><span><span><?php echo $this->__('Continue') ?></span></span></button>
+        <span id="shipping-method-please-wait" class="please-wait" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo Mage::helper('core')->quoteEscape($this->__('Loading next step...')) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Loading next step...')) ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
+        </span>
+    </div>
+    <?php echo $this->getBlockHtml('formkey') ?>
+</form>

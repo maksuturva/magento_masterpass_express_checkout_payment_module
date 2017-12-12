@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2017 Vaimo Finland Oy, Suomen Maksuturva Oy
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config>
+    <modules>
+        <Vaimo_MaksuturvaMasterpass>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Vaimo_Maksuturva />
+            </depends>
+        </Vaimo_MaksuturvaMasterpass>
+    </modules>
+</config>

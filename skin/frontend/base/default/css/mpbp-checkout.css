@@ -1,0 +1,95 @@
+.mpbp-address-display {
+    display: inline-block;
+}
+
+#mpbp-address-shipping {
+    margin-right: 30px;
+}
+
+.mpbp .step-title .number {
+    display: none;
+}
+
+.mpbp #shipping-method-buttons-container,
+.mpbp #shipping-method-buttons-container .button,
+.mpbp #review-buttons-container,
+.mpbp #review-buttons-container .btn-checkout {
+    float: none;
+}
+
+.mpbp .btn-remove {
+    display: none;
+}
+
+#opc-login .mpbp-btn {
+    margin-top: 11px;
+}
+
+.mpbp-btn {
+    text-transform: none;
+    width: 147px;
+}
+
+.mpbp-btn-label {
+    float: left;
+    font-size: 15px;
+    text-transform: none;
+    margin-bottom: 4px;
+}
+.mpbp-btn img {
+    max-height: 34px;
+}
+
+.mpbp-btn .mpbp-about-link {
+    margin-top: 5px;
+    text-align: right;
+}
+
+.mpbp-about-popup {
+    float: left;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 100vw;
+    height: 621px;
+    display: none;
+    z-index: 500;
+    border: 1px solid grey;
+    background: white url(../images/loading.gif) center center no-repeat;
+    background-size: 30px;
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 7px;
+}
+
+@media (min-width: 640px) {
+    .mpbp-about-popup {
+        width: 626px;
+        height: 621px;
+    }
+}
+
+.mpbp-about-popup iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.mpbp-about-popup .mpbp-popup-close {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translateX(-100%);
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.mpbp-about-popup .mpbp-popup-close:hover {
+    cursor: pointer;
+}
+
+.checkout-types .mpbp-btn {
+    margin-top: 12px;
+}
+

@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright (c) 2017 Vaimo Finland Oy, Suomen Maksuturva Oy
+ * See LICENSE.txt for license details.
+ */
+?>
+<?php /* @var $shippingAddress Mage_Sales_Model_Quote_Address */ ?>
+<?php $shippingAddress = $this->getShippingAddress(); ?>
+
+<?php /* @var $billingAddress Mage_Sales_Model_Quote_Address */ ?>
+<?php $billingAddress = $this->getBillingAddress(); ?>
+
+<?php if ($shippingAddress): ?>
+    <div class="mpbp-address-display" id="mpbp-address-shipping">
+        <h3><?php echo $this->__('Shipping Address') ?></h3>
+        <address>
+            <?php echo $shippingAddress->getFirstname() . ' ' . $billingAddress->getLastname(); ?>
+            <br><?php echo implode(' ', $shippingAddress->getStreet()); ?>
+            <br><?php echo $shippingAddress->getPostcode() . ' ' . $shippingAddress->getCity(); ?>
+            <br><?php echo $shippingAddress->getCountryId(); ?>
+            <br><?php echo $shippingAddress->getTelephone(); ?>
+        </address>
+    </div>
+<?php endif ?>
+
+<?php if ($billingAddress): ?>
+    <div class="mpbp-address-display" id="mpbp-address-billing">
+        <h3><?php echo $this->__('Billing Address'); ?></h3>
+        <address>
+            <?php echo $billingAddress->getFirstname() . ' ' . $billingAddress->getLastname(); ?>
+            <br><?php echo implode(' ', $billingAddress->getStreet()); ?>
+            <br><?php echo $billingAddress->getPostcode() . ' ' . $billingAddress->getCity(); ?>
+            <br><?php echo $billingAddress->getCountryId(); ?>
+            <br><?php echo $billingAddress->getTelephone(); ?>
+        </address>
+    </div>
+<?php endif ?>

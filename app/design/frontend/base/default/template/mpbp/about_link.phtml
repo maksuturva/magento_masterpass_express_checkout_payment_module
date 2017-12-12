@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright (c) 2017 Vaimo Finland Oy, Suomen Maksuturva Oy
+ * See LICENSE.txt for license details.
+ */
+?>
+<div class="mpbp-about-link">
+    <a href="#"><?php echo $this->__('Learn more'); ?></a>
+</div>
+
+<div class="mpbp-about-popup">
+    <iframe></iframe>
+    <span class="icon-remove mpbp-popup-close"></span>
+</div>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        var popup = '.mpbp-about-popup';
+        var iframe = '.mpbp-about-popup iframe';
+
+        $(document).click(function() {
+            if($(popup).css('display') !== 'none') {
+                $(popup).css('display', 'none');
+            }
+        });
+
+        $(".mpbp-about-link").click(function(event) {
+           $(popup).css('display', 'inherit');
+
+           if($(iframe).attr('src') === undefined) {
+               $(iframe).attr('src', '<?php echo $this->getIframeUrl(); ?>');
+           }
+           event.stopImmediatePropagation();
+        });
+    });
+</script>

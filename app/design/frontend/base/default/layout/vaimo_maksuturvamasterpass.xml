@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2017 Vaimo Finland Oy, Suomen Maksuturva Oy
+ * See LICENSE.txt for license details.
+ */
+ -->
+<layout version="0.1.0">
+    <maksuturvamasterpass_checkout_index translate="label">
+        <label>Masterpass checkout</label>
+        <remove name="left"/>
+
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/mpbp-checkout.css</name>
+                <group>checkout</group>
+            </action>
+        </reference>
+
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+        <block type="page/html_head" name="mmbp.head" />
+
+        <reference name="content">
+            <block name="mpbp.checkout" type="maksuturvamasterpass/onepage" template="mpbp/checkout.phtml">
+                <block name="mpbp.address.display" type="maksuturvamasterpass/address_display" template="mpbp/checkout/address/display.phtml" as="address_display"/>
+                <block name="mpbp.shipping.method" type="maksuturvamasterpass/onepage_shipping_method" template="mpbp/checkout/shipping/method.phtml" as="shipping_method">
+                    <block name="mmbp.shipping.method.available" type="maksuturvamasterpass/onepage_shipping_available" template="mpbp/checkout/shipping_method/available.phtml" as="available"/>
+                </block>
+                <block name="mpbp.review" type="maksuturvamasterpass/onepage_review" template="mpbp/checkout/review.phtml" as="review"/>
+            </block>
+        </reference>
+    </maksuturvamasterpass_checkout_index>
+
+    <maksuturvamasterpass_checkout_review>
+        <block type="maksuturvamasterpass/onepage_review_info" name="root" output="toHtml" template="mpbp/checkout/review/info.phtml">
+            <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>checkout/onepage/review/item.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/onepage/review/item.phtml</template></action>
+            <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/onepage/review/item.phtml</template></action>
+            <block type="checkout/cart_totals" name="checkout.onepage.review.info.totals" as="totals" template="checkout/onepage/review/totals.phtml"/>
+            <block type="core/text_list" name="checkout.onepage.review.info.items.before" as="items_before" translate="label">
+                <label>Items Before</label>
+            </block>
+            <block type="core/text_list" name="checkout.onepage.review.info.items.after" as="items_after" translate="label">
+                <label>Items After</label>
+            </block>
+            <block type="checkout/agreements" name="checkout.onepage.agreements" as="agreements" template="checkout/onepage/agreements.phtml"/>
+            <block type="core/template" name="checkout.onepage.review.button" as="button" template="checkout/onepage/review/button.phtml"/>
+        </block>
+        <action block="checkout.onepage.review.button" method="setModuleName">
+            <name>Vaimo_MaksuturvaMasterpass</name>
+        </action>
+    </maksuturvamasterpass_checkout_review>
+
+    <maksuturvamasterpass_checkout_success>
+        <update handle="checkout_onepage_success"/>
+
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </maksuturvamasterpass_checkout_success>
+
+    <checkout_cart_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/mpbp-checkout.css</name>
+                <group>checkout</group>
+            </action>
+        </reference>
+        <reference name="checkout.cart.methods">
+            <block ifconfig="payment/maksuturvamasterpass/active" type="maksuturvamasterpass/link" name="mpbp.checkout.link" template="mpbp/checkout/link.phtml">
+                <block name="mpbp.checkout.login.button.additional" as="additional" type="maksuturvamasterpass/aboutLink" template="mpbp/about_link.phtml"/>
+                <action method="setIsInCartPage"><name>value</name><value>1</value></action>
+            </block>
+        </reference>
+    </checkout_cart_index>
+
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/mpbp-checkout.css</name>
+                <group>checkout</group>
+            </action>
+        </reference>
+        <reference name="checkout.onepage.login">
+            <block name="mpbp.checkout.login.button" as="mpbp_button" type="maksuturvamasterpass/link" template="mpbp/checkout/link.phtml">
+                <block name="mpbp.checkout.login.button.additional" as="additional" type="maksuturvamasterpass/aboutLink" template="mpbp/about_link.phtml"/>
+            </block>
+        </reference>
+    </checkout_onepage_index>
+</layout>
